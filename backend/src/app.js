@@ -5,9 +5,8 @@ const app = express();
 port = 3000;
 
 // Routes
-app.get("/", (req, res) => {
-    res.send("Hi, Dogui!")
-});
+const mainRouter = require("./routes/api/mainRouter");
+app.use("/", mainRouter);
 
 // Start the server
 app.listen(port, () => {
