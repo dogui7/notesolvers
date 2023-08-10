@@ -19,7 +19,7 @@ const router = createBrowserRouter([
   {
     path: "/edit/:id",
     element: <EditNote/>
-  },
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

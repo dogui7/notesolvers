@@ -5,7 +5,6 @@ import Header from "./Header";
 
 function PostRequest() {
     const [loading, setLoading] = useState(false)
-    const [note, setNote] = useState()
     const [formData, setFormData] = useState({
         title: "",
         text: "",
