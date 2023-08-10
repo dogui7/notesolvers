@@ -6,8 +6,9 @@ const apiMainController = {
     const data = {
       message: "The available endpoints are as follows:",
       test: "http://localhost:3000/test",
-      allNotes: "http://localhost:3000/api/notes",
-      oneNote: "http://localhost:3000/api/notes/id",
+      allNotes: "GET: http://localhost:3000/api/notes",
+      oneNote: "GET: http://localhost:3000/api/notes/id",
+      createNote: "POST: http://localhost:3000/api/notes/addNote"
     };
     res.status(200).json(data);
   },

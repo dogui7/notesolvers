@@ -4,6 +4,10 @@ const app = express();
 
 require("dotenv").config();
 
+// Middlewares
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
 // Routes
 const mainRouter = require("./routes/api/mainRouter");
 app.use("/", mainRouter);

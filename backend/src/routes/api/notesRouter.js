@@ -1,12 +1,13 @@
 const express = require ("express");
 const router = express.Router();
 
-const apiMainController = require ("../../controllers/api/notesController");
+const notesController = require ("../../controllers/api/notesController");
 
 
 // Routes
 
-router.get("/", apiMainController.allNotes);
+router.get("/", notesController.allNotes);
+router.post("/addNote", notesController.createNote);
 
 
 module.exports = router;
