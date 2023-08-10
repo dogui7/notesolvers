@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
-export default function Note() {
+export default function Note(props) {
 
-    const [note, setNote] = useState("loading");
+    /* const [note, setNote] = useState("loading");
 
     useEffect(() => {
         async function fetchNote() {
@@ -13,19 +13,19 @@ export default function Note() {
                 }
                 const jsonData = await response.json();
                 setNote(jsonData);
-                console.log(note.name)
             } catch (error) {
                 console.log(error)
             }
         }
 
         fetchNote();
-    }, []);
+    }, []); */
 
     return (
         <div>
-            <h3>Note</h3>
-            {note &&<p> {note.text} </p>}
+            <h3> {props.data.title}</h3>
+            <p> {props.data.text} </p>
+            <p> {props.pan} </p>
         </div>
     )
 }
