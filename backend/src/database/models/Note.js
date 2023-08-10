@@ -32,5 +32,12 @@ module.exports = (sequelize, dataTypes) => {
 
     const Note = sequelize.define(alias, cols, config);
 
+    Note.associate = function (models){
+        Note.belongsTo (models.Categories, {
+            as: "category",
+            foreingKey: "category_id"
+        })
+    }  
+
     return Note;
 }
