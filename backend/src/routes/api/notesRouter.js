@@ -8,6 +8,7 @@ const notesController = require ("../../controllers/api/notesController");
 
 router.get("/", notesController.allNotes);
 router.post("/addNote", notesController.createNote);
+router.put("/editNote/:id", notesController.editNote);
 
 
 module.exports = router;
