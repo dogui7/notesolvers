@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
+import {Link} from 'react-router-dom'
+
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
@@ -16,6 +18,7 @@ export default function Note(props) {
                     <Typography variant="body2" color="text.secondary">
                         {props.data.text}
                     </Typography>
+                    <Link to={`/edit/${props.data.id}`}>Edit</Link>
                 </CardContent>
             </Card>
         </Grid>

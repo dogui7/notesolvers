@@ -14,9 +14,6 @@ export default function Header() {
           <li>
             <Link to="/create">Create note</Link>
           </li>
-          <li>
-            <Link to="/edit/4">Edit note</Link>
-          </li>
         </ul>
       </nav>
     </>

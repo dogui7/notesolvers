@@ -38,9 +38,7 @@ export default function NotesList() {
                         return <Note key={i} data={note} />          
                     })}
                 </Grid>
-            )
-            
-            }
+            )}
         </>
     )
 }

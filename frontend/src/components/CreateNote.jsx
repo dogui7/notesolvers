@@ -39,7 +39,6 @@ function PostRequest() {
         });
 
         navigate("/");
-        /* window.location.reload(false); */
     };
 
     return (
