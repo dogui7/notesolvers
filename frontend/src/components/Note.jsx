@@ -1,31 +1,25 @@
 import React, { useEffect, useState } from 'react'
 
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardHeader from '@mui/material/CardHeader';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+
 export default function Note(props) {
 
-    /* const [note, setNote] = useState("loading");
-
-    useEffect(() => {
-        async function fetchNote() {
-            try {
-                const response = await fetch("/api/notes/note/3");
-                if (!response.ok) {
-                    throw new Error("Network response was not ok")
-                }
-                const jsonData = await response.json();
-                setNote(jsonData);
-            } catch (error) {
-                console.log(error)
-            }
-        }
-
-        fetchNote();
-    }, []); */
-
+    
     return (
-        <div>
-            <h3> {props.data.title}</h3>
-            <p> {props.data.text} </p>
-            <p> {props.pan} </p>
-        </div>
+        <Grid item xs={3}>                                         
+            <Card>
+                <CardHeader title={props.data.title}/>
+                <CardContent>
+                    <Typography variant="body2" color="text.secondary">
+                        {props.data.text}
+                    </Typography>
+                </CardContent>
+            </Card>
+        </Grid>
+        
     )
 }

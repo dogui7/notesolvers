@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Note from "./Note";
+import Grid from '@mui/material/Grid';
 
 export default function NotesList() {
 
@@ -23,18 +24,10 @@ export default function NotesList() {
     }, []);
 
     return (
-        <>
-        {console.log(notes)}
-            <ul>
-                {notes.map((note, i) => {
-                    return <>
-                        <li key={i}>
-                            <Note key={i} data={note} pan={"rico"} />
-                        </li>
-                    </>
-                })}
-            </ul>
-            {}
-        </>
+        <Grid container spacing={2}>
+            {notes.map((note, i) => {
+                return <Note key={i} data={note} />          
+            })}
+        </Grid>
     )
 }
