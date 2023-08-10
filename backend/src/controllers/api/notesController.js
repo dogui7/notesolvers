@@ -2,7 +2,7 @@ const {Notes} = require("../../database/models");
 
 const notesController = {
 
-    // GET /api/notes/notes
+    // GET /api/notes/all
     allNotes: async (req, res) => {
         try {
             const notes = await Notes.findAll();
@@ -14,8 +14,27 @@ const notesController = {
             })
         }
     },
+
+    // GET /api/notes/note/:id
+    oneNote: async (req, res) => {
+        try {
+            const noteId = req.params.id
+            const note = await Notes.findByPk(noteId);
+
+            if (!note) {
+                return res.status(404).json({message: `Note with id ${noteId} not found`})
+            }
+
+            res.status(200).json(note)
+        } catch (error) {
+            console.error("Error fetching note: ", error);
+            res.status(500).json({
+                message: "An error ocurred while fetching the note"
+            })
+        }
+    },
     
-    // POST /api/notes/addNote
+    // POST /api/notes/addNote/:id
     createNote: async (req, res) => {
         try {
             const newNote = await Notes.create(req.body);
@@ -28,7 +47,7 @@ const notesController = {
         }
     },
 
-    // PUT /api/notes/editNote
+    // PUT /api/notes/editNote/:id
     editNote: async (req, res) => {
         try {
             const noteId = req.params.id
@@ -53,7 +72,7 @@ const notesController = {
         }
     },
 
-    // DELETE /api/notes/deleteNote
+    // DELETE /api/notes/deleteNote/:id
     deleteNote: async (req, res) => {
         try {
             const noteId = req.params.id
