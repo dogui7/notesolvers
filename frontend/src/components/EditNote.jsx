@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
+import {useParams} from "react-router-dom";
 import Header from "./Header";
 
 function PostRequest() {
+    const [response, setResponse] = useState(null);
     const [formData, setFormData] = useState({
         title: "",
         text: "",
         category_id: 0,
     });
+    const {id} = useParams();
 
-    const navigate = useNavigate()
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevData) => ({
@@ -30,7 +30,7 @@ function PostRequest() {
             category_id: 1,
         };
 
-        await fetch(url, {
+        const response = await fetch(url, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -38,14 +38,15 @@ function PostRequest() {
             body: JSON.stringify(data),
         });
 
-        navigate("/");
-        /* window.location.reload(false); */
+        const jsonResponse = await response.json();
+        window.location.reload(false);
     };
 
     return (
         <div>
             <Header/>
-            <h2>Create new note</h2>
+            <h2>Edit note with id: {id}</h2>
+            <p>{id}</p>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Title:</label>

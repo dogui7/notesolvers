@@ -6,8 +6,10 @@ function App() {
 
   return (
     <>
-      <CreateNote/>
       <Header/>
+      <br />
+      {/* <CreateNote/> */}
+      <br /><br /><br />
       <NotesList/>
     </>
   )
