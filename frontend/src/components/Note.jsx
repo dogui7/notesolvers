@@ -8,7 +8,6 @@ import Grid from '@mui/material/Grid';
 
 export default function Note(props) {
 
-    
     return (
         <Grid item xs={3}>                                         
             <Card>
