@@ -83,7 +83,7 @@ function PostRequest() {
             ) : (
                 
                 <>
-                <h2>Edit note with id: {id}</h2>
+                <h2>Edit note</h2>
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label>Title:</label>

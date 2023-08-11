@@ -4,15 +4,17 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit';
+import ArchiveIcon from '@mui/icons-material/Archive';
+import UnarchiveIcon from '@mui/icons-material/Unarchive';
+import DeleteIcon from '@mui/icons-material/Delete';
 import Grid from '@mui/material/Grid';
 
 import {Link} from 'react-router-dom'
 
-import ConfirmationDialog from './ConfirmationDialog';
 
 export default function Note(props) {
-
-    const [showConfirmation, setShowConfirmation] = useState(false);
 
     // if archived, it un-archives it, and visce versa
     const handleArchiveButtonClick = async () => {
@@ -31,26 +33,19 @@ export default function Note(props) {
         window.location.reload()
     };
 
-    const handleDeleteButtonClick = () => {
-        setShowConfirmation(true);
-    };
+    const handleDeleteButtonClick = async () => {
+        if(window.confirm("Are you sure you want to delete this note? it will be lost forever")) {
+            // Delete note
+            const url = `/api/notes/deleteNote/${props.data.id}`;
 
-    const handleConfirm = async () => {
-        // Delete note
-        const url = `/api/notes/deleteNote/${props.data.id}`;
-
-        await fetch(url, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        });
-        
-        setShowConfirmation(false); // Hide the confirmation dialog
-      };
-
-    const handleCancel = () => {
-        setShowConfirmation(false); // Hide the confirmation dialog
+            await fetch(url, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            });
+            window.location.reload()
+        }
     };
 
     return (
@@ -61,21 +56,28 @@ export default function Note(props) {
                     <Typography variant="body2" color="text.secondary">
                         {props.data.text}
                     </Typography>
-                    <Link to={`/edit/${props.data.id}`}>Edit</Link>
-                    {props.data.archived 
-                    ? 
-                        <p onClick={handleArchiveButtonClick}>Retrieve</p>
-                    :
-                        <p onClick={handleArchiveButtonClick}>Archive</p>
+                    {!props.data.archived && 
+                        <Link to={`/edit/${props.data.id}`}>
+                            <IconButton aria-label="delete">
+                                <EditIcon />
+                            </IconButton>
+                        </Link>
                     }
-                    <p onClick={handleDeleteButtonClick}>Delete</p>
-                    {showConfirmation && (
-                        <ConfirmationDialog
-                            message="Are you sure you want to delete this note? it will be lost forever"
-                            onConfirm={handleConfirm}
-                            onCancel={handleCancel}
-                        />
-                    )}
+                    {props.data.archived 
+                    ?   
+                        <IconButton aria-label="delete" onClick={handleArchiveButtonClick}>
+                            <UnarchiveIcon />
+                        </IconButton>
+                    :
+                        <IconButton aria-label="delete" onClick={handleArchiveButtonClick}>
+                            <ArchiveIcon />
+                        </IconButton>
+                    }
+                    {!props.data.archived && 
+                        <IconButton aria-label="delete" onClick={handleDeleteButtonClick}>
+                            <DeleteIcon />
+                        </IconButton>
+                    }
                 </CardContent>
             </Card>
         </Grid>

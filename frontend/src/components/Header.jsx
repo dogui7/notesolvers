@@ -1,21 +1,22 @@
 import React from 'react'
+import '../assets/Header.css'
 import {Link} from 'react-router-dom'
 
 export default function Header() {
   return (
     <>
 
-      <h1>Notesolvers</h1>
+      <Link to="/"><h1 id="title">Notesolvers</h1></Link>
       <nav>
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/" className="link">Home</Link>
           </li>
           <li>
-            <Link to="/create">Create note</Link>
+            <Link to="/create" className="link">Create note</Link>
           </li>
           <li>
-            <Link to="/archived">Archived</Link>
+            <Link to="/archived" className="link">Archived</Link>
           </li>
         </ul>
       </nav>
