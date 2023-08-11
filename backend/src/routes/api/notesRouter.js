@@ -7,6 +7,7 @@ const notesController = require ("../../controllers/api/notesController");
 // Routes
 
 router.get("/all", notesController.allNotes);
+router.get("/archived", notesController.archivedNotes);
 router.get("/note/:id", notesController.oneNote);
 
 router.post("/addNote", notesController.createNote);

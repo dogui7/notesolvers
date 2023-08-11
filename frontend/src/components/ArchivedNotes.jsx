@@ -1,8 +1,8 @@
 import React, { useEffect, useState} from 'react'
+import Header from "./Header";
 import HashLoader from "react-spinners/HashLoader";
 import Note from "./Note";
 import Grid from '@mui/material/Grid';
-
 
 export default function NotesList() {
 
@@ -13,7 +13,7 @@ export default function NotesList() {
         setLoading(true);
         async function fetchNote() {
             try {
-                const response = await fetch("/api/notes/all");
+                const response = await fetch("/api/notes/archived");
                 if (!response.ok) {
                     throw new Error("Network response was not ok")
                 }
@@ -30,6 +30,7 @@ export default function NotesList() {
 
     return (
         <>
+            <Header/>
             {loading ? (
                 <HashLoader color="#36d7b7" speedMultiplier={2.5}/>
             ) : (

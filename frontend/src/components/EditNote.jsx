@@ -56,7 +56,7 @@ function PostRequest() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const url = "/api/notes/editNote/" + id;
+        const url = `/api/notes/editNote/${id}`;
         const data = {
             title: formData.title,
             text: formData.text,

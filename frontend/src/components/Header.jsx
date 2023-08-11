@@ -14,6 +14,9 @@ export default function Header() {
           <li>
             <Link to="/create">Create note</Link>
           </li>
+          <li>
+            <Link to="/archived">Archived</Link>
+          </li>
         </ul>
       </nav>
     </>

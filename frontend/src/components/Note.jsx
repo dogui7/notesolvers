@@ -14,8 +14,21 @@ export default function Note(props) {
 
     const [showConfirmation, setShowConfirmation] = useState(false);
 
-    const handleArchiveButtonClick = () => {
-        
+    // if archived, it un-archives it, and visce versa
+    const handleArchiveButtonClick = async () => {
+        const url = `/api/notes/editNote/${props.data.id}`;
+        const data = {
+            archived: props.data.archived ? false : true
+        };
+
+        await fetch(url, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+        window.location.reload()
     };
 
     const handleDeleteButtonClick = () => {
@@ -49,7 +62,12 @@ export default function Note(props) {
                         {props.data.text}
                     </Typography>
                     <Link to={`/edit/${props.data.id}`}>Edit</Link>
+                    {props.data.archived 
+                    ? 
+                    <p onClick={handleArchiveButtonClick}>Retrieve</p>
+                    :
                     <p onClick={handleArchiveButtonClick}>Archive</p>
+                    }
                     <p onClick={handleDeleteButtonClick}>Delete</p>
                     {showConfirmation && (
                         <ConfirmationDialog
