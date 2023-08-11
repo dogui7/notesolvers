@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Divider from '@mui/material/Divider';
+
 import Header from "./Header";
 
 function PostRequest() {
@@ -46,26 +50,27 @@ function PostRequest() {
             <Header/>
             <h2>Create new note</h2>
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Title:</label>
-                    <input
-                        type="text"
-                        name="title"
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div>
-                    <label>Text:</label>
-                    <input
-                        type="text"
-                        name="text"
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <button type="submit">
-                    Create
-                </button>
-            </form>
+                    <List bgcolor='background.paper'component="nav" aria-label="mailbox folders">
+                        <ListItem button>
+                            <label>Title:</label>
+                            <input
+                                type="text"
+                                name="title"
+                                onChange={handleInputChange}
+                            />
+                        </ListItem>
+                        <Divider />
+                        <ListItem button divider>
+                            <label>Text:</label>
+                            <input
+                                type="text"
+                                name="text"
+                                onChange={handleInputChange}
+                            />
+                        </ListItem>
+                    </List>
+                        <button type="submit"> Create </button>
+                </form>
         </div>
     );
 }

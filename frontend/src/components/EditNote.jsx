@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardHeader from '@mui/material/CardHeader';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Divider from '@mui/material/Divider';
 import HashLoader from "react-spinners/HashLoader";
 import Header from "./Header";
 
@@ -77,37 +85,38 @@ function PostRequest() {
     return (
         <div>
             <Header/>
-
+            <h2>Edit note</h2>
             {loading ? (
                 <HashLoader color="#36d7b7" speedMultiplier={2.5}/>
             ) : (
-                
                 <>
-                <h2>Edit note</h2>
                 <form onSubmit={handleSubmit}>
-                    <div>
-                        <label>Title:</label>
-                        <input
-                            type="text"
-                            name="title"
-                            value={formData.title}
-                            onChange={handleInputChange}
+                    <List bgcolor='background.paper'component="nav" aria-label="mailbox folders">
+                        <ListItem button>
+                            <label>Title:</label>
+                            <input
+                                type="text"
+                                name="title"
+                                value={formData.title}
+                                onChange={handleInputChange}
                             />
-                    </div>
-                    <div>
-                        <label>Text:</label>
-                        <input
-                            type="text"
-                            name="text"
-                            value={formData.text}
-                            onChange={handleInputChange}
+                        </ListItem>
+                        <Divider />
+                        <ListItem button divider>
+                            <label>Text:</label>
+                            <input
+                                type="text"
+                                name="text"
+                                value={formData.text}
+                                onChange={handleInputChange}
                             />
-                    </div>
-                    <button type="submit">
-                        Edit
-                    </button>
+                        </ListItem>
+                    </List>
+                        <button type="submit">
+                            Edit
+                        </button>
                 </form>
-            </>
+                </>
             )}
             
         </div>

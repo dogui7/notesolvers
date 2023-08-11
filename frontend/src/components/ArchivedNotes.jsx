@@ -34,11 +34,15 @@ export default function NotesList() {
             {loading ? (
                 <HashLoader color="#36d7b7" speedMultiplier={2.5}/>
             ) : (
-                <Grid container spacing={2}>
+                notes.length === 0 ? (
+                    <h2>Nothing to see here! Maybe you want to archive a note first?</h2>
+                ) : (
+                    <Grid container spacing={2}>
                     {notes.map((note, i) => {
                         return <Note key={i} data={note} />          
                     })}
-                </Grid>
+                    </Grid>
+                )
             )}
         </>
     )

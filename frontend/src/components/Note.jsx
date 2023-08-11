@@ -4,12 +4,12 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import ArchiveIcon from '@mui/icons-material/Archive';
 import UnarchiveIcon from '@mui/icons-material/Unarchive';
 import DeleteIcon from '@mui/icons-material/Delete';
-import Grid from '@mui/material/Grid';
 
 import {Link} from 'react-router-dom'
 
@@ -34,7 +34,7 @@ export default function Note(props) {
     };
 
     const handleDeleteButtonClick = async () => {
-        if(window.confirm("Are you sure you want to delete this note? it will be lost forever")) {
+        if(window.confirm("Are you sure you want to delete this note? It will be lost forever")) {
             // Delete note
             const url = `/api/notes/deleteNote/${props.data.id}`;
 
@@ -58,15 +58,15 @@ export default function Note(props) {
                     </Typography>
                     {!props.data.archived && 
                         <Link to={`/edit/${props.data.id}`}>
-                            <IconButton aria-label="delete">
+                            <IconButton color="#36d7b7" aria-label="delete">
                                 <EditIcon />
                             </IconButton>
                         </Link>
                     }
                     {props.data.archived 
                     ?   
-                        <IconButton aria-label="delete" onClick={handleArchiveButtonClick}>
-                            <UnarchiveIcon />
+                        <IconButton color="#36d7b7" aria-label="delete" onClick={handleArchiveButtonClick}>
+                            <UnarchiveIcon color="#36d7b7"/>
                         </IconButton>
                     :
                         <IconButton aria-label="delete" onClick={handleArchiveButtonClick}>
@@ -81,6 +81,5 @@ export default function Note(props) {
                 </CardContent>
             </Card>
         </Grid>
-        
     )
 }

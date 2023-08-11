@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom'
 export default function Header() {
   return (
     <>
-
       <Link to="/"><h1 id="title">Notesolvers</h1></Link>
       <nav>
         <ul>
