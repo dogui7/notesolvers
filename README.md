@@ -7,16 +7,24 @@ This is a NodeJS(V18.15.0) and React(V18.2.0) application, designed to create, e
 It stores the data in an SQL database hosted in alwaysData.
 ## Installation
 
-To setup and run the project, use the following commands:
+To setup and run the project, install NodeJs V18.15.0, and then use the following commands:
 
 ```bash
   cd backend
   npm run setup
 ```
-    
+  If you only need to run the project without installing, use:
+
+```bash
+  cd backend
+  npm run start
+```
+
 ## ERD
 
-Due to time constraints, I wasn't able to fully implement the categories dynamic in the application, but the table was made for a future implementation.
+Due to time constraints, I wasn't able to fully implement the categories dynamic in the application, but the table was made for a future implementation. 
+
+I am aware that the relation should be many to many, not one to many. It will be addressed in the future.
 
 ![App Screenshot](https://i.imgur.com/mRnUAtl.jpg)
 
