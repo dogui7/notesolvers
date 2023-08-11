@@ -7,7 +7,11 @@ This is a NodeJS(V18.15.0) and React(V18.2.0) application, designed to create, e
 It stores the data in an SQL database hosted in alwaysData.
 ## Installation
 
+<<<<<<< HEAD
 To setup and run the project, use the following commands:
+=======
+To setup the project for running, use the following commands:
+>>>>>>> b78486cc61748fe9a0c866329ea7e3aa0aa1cfb5
 
 ```bash
   cd backend
