@@ -7,13 +7,16 @@ This is a NodeJS(V18.15.0) and React(V18.2.0) application, designed to create, e
 It stores the data in an SQL database hosted in alwaysData.
 ## Installation
 
-To setup and run the project, install NodeJs V18.15.0, and then use the following commands:
+To setup and run the project:
+ - Clone this repository
+ - Install NodeJs V18.15.0
+ - Use then use the following commands:
 
 ```bash
   cd backend
   npm run setup
 ```
-  If you only need to run the project without installing, use:
+  If you already used the "setup" command and need to run the project again, use:
 
 ```bash
   cd backend
