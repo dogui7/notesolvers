@@ -20,7 +20,7 @@ To setup and run the project:
 
 ```bash
   cd backend
-  npm run start
+  npm start
 ```
 
 ## ERD
