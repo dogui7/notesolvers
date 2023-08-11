@@ -16,6 +16,11 @@ To setup and run the project:
   cd backend
   npm run setup
 ```
+
+ - then open the localhost that vite says in the console
+
+
+
   If you already used the "setup" command and need to run the project again, use:
 
 ```bash
