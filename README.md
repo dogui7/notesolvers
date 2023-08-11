@@ -10,7 +10,7 @@ It stores the data in an SQL database hosted in alwaysData.
 To setup and run the project:
  - Clone this repository
  - Install NodeJs V18.15.0
- - Use then use the following commands:
+ - Use the following commands:
 
 ```bash
   cd backend
