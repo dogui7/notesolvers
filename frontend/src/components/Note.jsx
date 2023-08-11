@@ -64,9 +64,9 @@ export default function Note(props) {
                     <Link to={`/edit/${props.data.id}`}>Edit</Link>
                     {props.data.archived 
                     ? 
-                    <p onClick={handleArchiveButtonClick}>Retrieve</p>
+                        <p onClick={handleArchiveButtonClick}>Retrieve</p>
                     :
-                    <p onClick={handleArchiveButtonClick}>Archive</p>
+                        <p onClick={handleArchiveButtonClick}>Archive</p>
                     }
                     <p onClick={handleDeleteButtonClick}>Delete</p>
                     {showConfirmation && (
