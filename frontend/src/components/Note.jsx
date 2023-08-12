@@ -70,7 +70,7 @@ export default function Note(props) {
                     {!props.data.archived && 
                         <Link to={`/edit/${props.data.id}`}>
                             <IconButton>
-                                <EditIcon/>
+                                <EditIcon color="primary"/>
                             </IconButton>
                         </Link>
                     }
@@ -78,16 +78,16 @@ export default function Note(props) {
                     {props.data.archived 
                     ?   
                         <IconButton onClick={handleArchiveButtonClick}>
-                            <UnarchiveIcon/>
+                            <UnarchiveIcon color="primary"/>
                         </IconButton>
                     :
                         <IconButton onClick={handleArchiveButtonClick}>
-                            <ArchiveIcon/>
+                            <ArchiveIcon color="primary"/>
                         </IconButton>
                     }
                     {/* Delete button */}
                     <IconButton onClick={handleDeleteButtonClick}>
-                        <DeleteIcon />
+                        <DeleteIcon color="error"/>
                     </IconButton>
                 </CardContent>
             </Card>

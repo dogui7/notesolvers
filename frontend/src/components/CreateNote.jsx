@@ -5,15 +5,12 @@ import {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 
 // MUI
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
 // My components
 import Header from "./Header";
@@ -44,9 +41,6 @@ export default function CreateNote() {
 
     // Handle form submit and make POST request
     const handleFormSubmit = async (event) => {
-        // Prevent real submit from happening
-        event.preventDefault();
-
         // POST request
         const url = "/api/notes/addNote";
         const data = {
@@ -72,34 +66,31 @@ export default function CreateNote() {
         <>
         <Header/>
         <h2>Create new note</h2>
-        <form onSubmit={handleFormSubmit}>
-
         <Grid container spacing={2}>
             <Grid item xs={3}>                                         
                 <Card>
-                    {/* Title */}
                     <CardContent>
-                        {/* Text */}
-                        <Typography variant="body2" color="text.secondary" id="title-create-note">
-                            <TextField fullWidth multiline size="small" id="outlined-basic" label="Title" variant="outlined"
+                        {/* Title */}
+                        <div id="title-input">
+                            <TextField fullWidth multiline size="small" label="Title" variant="outlined"
                                 type="text"
                                 name="title"
                                 onChange={handleInputChange}
                             />
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            <TextField fullWidth multiline size="small" id="outlined-basic" label="Text" variant="outlined" 
+                        </div>
+                        {/* Text */}
+                        <div id="text-input">
+                            <TextField className="input" fullWidth multiline size="small" label="Text" variant="outlined" 
                                 type="text"
                                 name="text"
                                 onChange={handleInputChange}
                             />
-                        </Typography>
+                        </div>
+                        <Button variant="contained" onClick={handleFormSubmit}>Create</Button>
                     </CardContent>
                 </Card>
             </Grid>
         </Grid>
-            <button type="submit">Create</button>
-        </form>
         </>
     );
 }
