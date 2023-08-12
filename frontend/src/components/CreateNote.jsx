@@ -8,9 +8,18 @@ import {useNavigate} from "react-router-dom";
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardHeader from '@mui/material/CardHeader';
+import Typography from '@mui/material/Typography';
 
 // My components
 import Header from "./Header";
+
+// CSS
+import "../assets/CreateNote.css";
 
 export default function CreateNote() {
 
@@ -64,25 +73,31 @@ export default function CreateNote() {
         <Header/>
         <h2>Create new note</h2>
         <form onSubmit={handleFormSubmit}>
-            <List component="nav" aria-label="mailbox folders">
-                <ListItem>
-                    <label>Title:</label>
-                    <input
-                        type="text"
-                        name="title"
-                        onChange={handleInputChange}
-                    />
-                </ListItem>
-                <Divider/>
-                <ListItem>
-                    <label>Text:</label>
-                    <input
-                        type="text"
-                        name="text"
-                        onChange={handleInputChange}
-                    />
-                </ListItem>
-            </List>
+
+        <Grid container spacing={2}>
+            <Grid item xs={3}>                                         
+                <Card>
+                    {/* Title */}
+                    <CardContent>
+                        {/* Text */}
+                        <Typography variant="body2" color="text.secondary" id="title-create-note">
+                            <TextField fullWidth multiline size="small" id="outlined-basic" label="Title" variant="outlined"
+                                type="text"
+                                name="title"
+                                onChange={handleInputChange}
+                            />
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            <TextField fullWidth multiline size="small" id="outlined-basic" label="Text" variant="outlined" 
+                                type="text"
+                                name="text"
+                                onChange={handleInputChange}
+                            />
+                        </Typography>
+                    </CardContent>
+                </Card>
+            </Grid>
+        </Grid>
             <button type="submit">Create</button>
         </form>
         </>

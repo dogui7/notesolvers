@@ -1,8 +1,12 @@
 import React from "react";
 
+// MUI
+import customTheme from './theme'
+import {ThemeProvider} from '@mui/material/styles';
+
 // React router dom
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
 // My components
 import Home from "./Home.jsx";
@@ -41,6 +45,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
-        <RouterProvider router={router} />
+        <ThemeProvider theme={customTheme}>
+            <RouterProvider router={router} />
+        </ThemeProvider>
     </React.StrictMode>
 );
