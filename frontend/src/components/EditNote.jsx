@@ -94,38 +94,38 @@ export default function EditNote() {
 
     return (
         <>
-            <Header/>
-            <h2>Edit note</h2>
-            {loading ? (
-                <HashLoader color="#36d7b7" speedMultiplier={2.5}/>
-            ) : (
-                <form onSubmit={handleFormSubmit}>
-                    <List component="nav" aria-label="mailbox folders">
-                        <ListItem >
-                            <label>Title:</label>
-                            <input
-                                type="text"
-                                name="title"
-                                value={formData.title}
-                                onChange={handleInputChange}
-                            />
-                        </ListItem>
-                        <Divider />
-                        <ListItem divider>
-                            <label>Text:</label>
-                            <input
-                                type="text"
-                                name="text"
-                                value={formData.text}
-                                onChange={handleInputChange}
-                            />
-                        </ListItem>
-                    </List>
-                    <button type="submit">
-                        Edit
-                    </button>
-                </form>
-            )}
+        <Header/>
+        <h2>Edit note</h2>
+        {loading ? (
+            <HashLoader color="#36d7b7" speedMultiplier={2.5}/>
+        ) : (
+            <form onSubmit={handleFormSubmit}>
+                <List component="nav" aria-label="mailbox folders">
+                    <ListItem >
+                        <label>Title:</label>
+                        <input
+                            type="text"
+                            name="title"
+                            value={formData.title}
+                            onChange={handleInputChange}
+                        />
+                    </ListItem>
+                    <Divider />
+                    <ListItem divider>
+                        <label>Text:</label>
+                        <input
+                            type="text"
+                            name="text"
+                            value={formData.text}
+                            onChange={handleInputChange}
+                        />
+                    </ListItem>
+                </List>
+                <button type="submit">
+                    Edit
+                </button>
+            </form>
+        )}
         </>
     );
 }

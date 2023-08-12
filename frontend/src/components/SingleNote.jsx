@@ -4,25 +4,34 @@ import {useEffect, useState} from 'react'
 // Loader
 import HashLoader from "react-spinners/HashLoader";
 
+// React router dom
+import {useParams} from "react-router-dom";
+
 // MUI imports
 import Grid from '@mui/material/Grid';
 
 // My components
+import Header from "./Header";
 import Note from "./Note";
 
 export default function NotesList() {
 
     // State
     const [loading, setLoading] = useState(false);
-    const [notes, setNotes] = useState([]);
+    const [note, setNote] = useState();
     
+    // id from parameters
+    const {id} = useParams();
+
     // On render, fetch the notes with a GET request and update the state
     useEffect(() => {
         async function fetchNote() {
             try {
-                const response = await fetch("/api/notes/all");
+                console.log(id)
+                const response = await fetch(`/api/notes/note/${id}`);
                 const jsonData = await response.json();
-                setNotes(jsonData);
+                setNote(jsonData);
+                console.log(jsonData)
                 setLoading(false);
             } catch (error) {
                 console.log(error)
@@ -35,23 +44,16 @@ export default function NotesList() {
 
     return (
         <>
-        
+        <Header/>
         {loading ? (
             <HashLoader color="#36d7b7" speedMultiplier={2.5}/>
         ) : (
-            notes.length === 0 ? (
-                <h2>Nothing to see here! Maybe you want to add a note first?</h2>
-            ) : (
-                <>
-                <h2>Your notes</h2>
-                <Grid container spacing={2}>
-                {notes.map((note, i) => {
-                    console.log(note)
-                    return <Note key={i} data={note} />          
-                })}
-                </Grid>
-                </>
-            )
+            <>
+            <h2>Your {note && note.archived && "archived"} note</h2>
+            <Grid container spacing={2}>
+                {note && <Note data={note}/>}
+            </Grid>
+            </>
         )}
         </>
     )

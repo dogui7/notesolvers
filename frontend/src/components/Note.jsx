@@ -34,6 +34,7 @@ export default function Note(props) {
 
         // Refresh the window to see changes (Ideally, it should re-render the NotesList or ArchivedList component)
         window.location.reload()
+        
     };
 
     // Handle delete button with a confirmation and make DELETE request
@@ -57,7 +58,9 @@ export default function Note(props) {
         <Grid item xs={3}>                                         
             <Card>
                 {/* Title */}
-                <CardHeader title={props.data.title}/>
+                    <Link to={`/note/${props.data.id}`}>
+                        <CardHeader title={props.data.title}/>
+                    </Link>
                 <CardContent>
                     {/* Text */}
                     <Typography variant="body2" color="text.secondary">
@@ -83,11 +86,9 @@ export default function Note(props) {
                         </IconButton>
                     }
                     {/* Delete button */}
-                    {!props.data.archived && 
-                        <IconButton onClick={handleDeleteButtonClick}>
-                            <DeleteIcon />
-                        </IconButton>
-                    }
+                    <IconButton onClick={handleDeleteButtonClick}>
+                        <DeleteIcon />
+                    </IconButton>
                 </CardContent>
             </Card>
         </Grid>

@@ -61,30 +61,30 @@ export default function CreateNote() {
 
     return (
         <>
-            <Header/>
-            <h2>Create new note</h2>
-            <form onSubmit={handleFormSubmit}>
-                <List component="nav" aria-label="mailbox folders">
-                    <ListItem>
-                        <label>Title:</label>
-                        <input
-                            type="text"
-                            name="title"
-                            onChange={handleInputChange}
-                        />
-                    </ListItem>
-                    <Divider/>
-                    <ListItem>
-                        <label>Text:</label>
-                        <input
-                            type="text"
-                            name="text"
-                            onChange={handleInputChange}
-                        />
-                    </ListItem>
-                </List>
-                <button type="submit">Create</button>
-            </form>
+        <Header/>
+        <h2>Create new note</h2>
+        <form onSubmit={handleFormSubmit}>
+            <List component="nav" aria-label="mailbox folders">
+                <ListItem>
+                    <label>Title:</label>
+                    <input
+                        type="text"
+                        name="title"
+                        onChange={handleInputChange}
+                    />
+                </ListItem>
+                <Divider/>
+                <ListItem>
+                    <label>Text:</label>
+                    <input
+                        type="text"
+                        name="text"
+                        onChange={handleInputChange}
+                    />
+                </ListItem>
+            </List>
+            <button type="submit">Create</button>
+        </form>
         </>
     );
 }
