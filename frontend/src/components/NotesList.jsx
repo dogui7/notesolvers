@@ -1,22 +1,26 @@
-import React, { useEffect, useState} from 'react'
+// useEffect and useState hook
+import {useEffect, useState} from 'react'
+
+// Loader
 import HashLoader from "react-spinners/HashLoader";
-import Note from "./Note";
+
+// MUI imports
 import Grid from '@mui/material/Grid';
 
+// My components
+import Note from "./Note";
 
 export default function NotesList() {
 
-    const [notes, setNotes] = useState([]);
+    // State
     const [loading, setLoading] = useState(false);
+    const [notes, setNotes] = useState([]);
     
+    // On render, fetch the notes with a GET request and update the state
     useEffect(() => {
-        setLoading(true);
         async function fetchNote() {
             try {
                 const response = await fetch("/api/notes/all");
-                if (!response.ok) {
-                    throw new Error("Network response was not ok")
-                }
                 const jsonData = await response.json();
                 setNotes(jsonData);
                 setLoading(false);
@@ -25,6 +29,7 @@ export default function NotesList() {
             }
         }
         
+        setLoading(true);
         fetchNote();
     }, []);
 

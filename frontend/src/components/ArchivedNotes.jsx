@@ -1,22 +1,27 @@
-import React, { useEffect, useState} from 'react'
-import Header from "./Header";
+// useEffect and useState hook
+import {useEffect, useState} from 'react'
+
+// Loader
 import HashLoader from "react-spinners/HashLoader";
-import Note from "./Note";
+
+// MUI imports
 import Grid from '@mui/material/Grid';
 
-export default function NotesList() {
+// My components
+import Note from "./Note";
+import Header from "./Header";
 
-    const [notes, setNotes] = useState([]);
+export default function ArchivedNotesList() {
+
+    // State
     const [loading, setLoading] = useState(false);
+    const [notes, setNotes] = useState([]);
     
+    //On render, fetch the archived notes with a GET request and update the state
     useEffect(() => {
-        setLoading(true);
-        async function fetchNote() {
+        async function fetchNotes() {
             try {
                 const response = await fetch("/api/notes/archived");
-                if (!response.ok) {
-                    throw new Error("Network response was not ok")
-                }
                 const jsonData = await response.json();
                 setNotes(jsonData);
                 setLoading(false);
@@ -24,8 +29,9 @@ export default function NotesList() {
                 console.log(error)
             }
         }
-        
-        fetchNote();
+
+        setLoading(true);
+        fetchNotes();
     }, []);
 
     return (

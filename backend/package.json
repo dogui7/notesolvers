@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "setup": "npm install && cd ../frontend && npm install && cd ../backend && npm run dev",
+    "setup": "npm install && cd ../frontend && npm install && cd ../backend && npm run start",
     "start": "concurrently \"npm run back\" \"npm run front\"",
     "dev": "concurrently \"npm run backDev\" \"npm run front\"",
     "backDev": "nodemon src/app.js",

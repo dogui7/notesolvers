@@ -1,17 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
+// useEffect and useState hook
+import {useEffect, useState} from 'react'
+
+// React router dom
+import {useNavigate, useParams} from "react-router-dom";
+
+// Loader
+import HashLoader from "react-spinners/HashLoader";
+
+// MUI
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
-import HashLoader from "react-spinners/HashLoader";
+
+// My components
 import Header from "./Header";
 
-function PostRequest() {
+export default function EditNote() {
+
+    // State
     const [loading, setLoading] = useState(false)
     const [formData, setFormData] = useState({
         title: "",
@@ -22,10 +28,10 @@ function PostRequest() {
     // id from parameters
     const {id} = useParams();
 
-    // using navigate to go to home after editing
+    // Using navigate to go to home after editing
     const navigate = useNavigate()
 
-    // onRender, find the note to edit
+    // On render, find the note to edit and update the state
     useEffect(() => {
         setLoading(true);
         async function fetchNote() {
@@ -52,6 +58,7 @@ function PostRequest() {
         fetchNote();
     }, [])
 
+    // On any input change, update the state
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevData) => ({
@@ -60,10 +67,12 @@ function PostRequest() {
         }));
     };
 
-    // Handle form submit
-    const handleSubmit = async (event) => {
+    // Handle form submit and make PUT request
+    const handleFormSubmit = async (event) => {
+        // Prevent real submit from happening
         event.preventDefault();
 
+        // PUT request
         const url = `/api/notes/editNote/${id}`;
         const data = {
             title: formData.title,
@@ -79,20 +88,20 @@ function PostRequest() {
             body: JSON.stringify(data),
         });
 
+        // Go to home
         navigate("/");
     };
 
     return (
-        <div>
+        <>
             <Header/>
             <h2>Edit note</h2>
             {loading ? (
                 <HashLoader color="#36d7b7" speedMultiplier={2.5}/>
             ) : (
-                <>
-                <form onSubmit={handleSubmit}>
-                    <List bgcolor='background.paper'component="nav" aria-label="mailbox folders">
-                        <ListItem button>
+                <form onSubmit={handleFormSubmit}>
+                    <List component="nav" aria-label="mailbox folders">
+                        <ListItem >
                             <label>Title:</label>
                             <input
                                 type="text"
@@ -102,7 +111,7 @@ function PostRequest() {
                             />
                         </ListItem>
                         <Divider />
-                        <ListItem button divider>
+                        <ListItem divider>
                             <label>Text:</label>
                             <input
                                 type="text"
@@ -112,15 +121,11 @@ function PostRequest() {
                             />
                         </ListItem>
                     </List>
-                        <button type="submit">
-                            Edit
-                        </button>
+                    <button type="submit">
+                        Edit
+                    </button>
                 </form>
-                </>
             )}
-            
-        </div>
+        </>
     );
 }
-
-export default PostRequest;

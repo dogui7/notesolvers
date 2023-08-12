@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+// React router dom
+import {Link} from 'react-router-dom'
 
+// MUI
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
@@ -11,13 +13,12 @@ import ArchiveIcon from '@mui/icons-material/Archive';
 import UnarchiveIcon from '@mui/icons-material/Unarchive';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-import {Link} from 'react-router-dom'
-
-
 export default function Note(props) {
 
-    // if archived, it un-archives it, and visce versa
+    // If archived, it retrieves it, and vice versa via a PUT request
     const handleArchiveButtonClick = async () => {
+
+        // PUT request
         const url = `/api/notes/editNote/${props.data.id}`;
         const data = {
             archived: props.data.archived ? false : true
@@ -30,12 +31,16 @@ export default function Note(props) {
             },
             body: JSON.stringify(data),
         });
+
+        // Refresh the window to see changes (Ideally, it should re-render the NotesList or ArchivedList component)
         window.location.reload()
     };
 
+    // Handle delete button with a confirmation and make DELETE request
     const handleDeleteButtonClick = async () => {
+        // Confirm delete
         if(window.confirm("Are you sure you want to delete this note? It will be lost forever")) {
-            // Delete note
+            // DELETE request
             const url = `/api/notes/deleteNote/${props.data.id}`;
 
             await fetch(url, {
@@ -51,30 +56,35 @@ export default function Note(props) {
     return (
         <Grid item xs={3}>                                         
             <Card>
+                {/* Title */}
                 <CardHeader title={props.data.title}/>
                 <CardContent>
+                    {/* Text */}
                     <Typography variant="body2" color="text.secondary">
                         {props.data.text}
                     </Typography>
+                    {/* Edit icon */}
                     {!props.data.archived && 
                         <Link to={`/edit/${props.data.id}`}>
-                            <IconButton color="#36d7b7" aria-label="delete">
-                                <EditIcon />
+                            <IconButton>
+                                <EditIcon/>
                             </IconButton>
                         </Link>
                     }
+                    {/* Archive || retrieve button */}
                     {props.data.archived 
                     ?   
-                        <IconButton color="#36d7b7" aria-label="delete" onClick={handleArchiveButtonClick}>
-                            <UnarchiveIcon color="#36d7b7"/>
+                        <IconButton onClick={handleArchiveButtonClick}>
+                            <UnarchiveIcon/>
                         </IconButton>
                     :
-                        <IconButton aria-label="delete" onClick={handleArchiveButtonClick}>
-                            <ArchiveIcon />
+                        <IconButton onClick={handleArchiveButtonClick}>
+                            <ArchiveIcon/>
                         </IconButton>
                     }
+                    {/* Delete button */}
                     {!props.data.archived && 
-                        <IconButton aria-label="delete" onClick={handleDeleteButtonClick}>
+                        <IconButton onClick={handleDeleteButtonClick}>
                             <DeleteIcon />
                         </IconButton>
                     }
