@@ -45,7 +45,6 @@ export default function NotesList() {
                 <h2>Your notes</h2>
                 <Grid container spacing={2}>
                 {notes.map((note, i) => {
-                    console.log(note)
                     return <Note key={i} data={note} />          
                 })}
                 </Grid>

@@ -26,7 +26,6 @@ export default function NotesList() {
     useEffect(() => {
         async function fetchNote() {
             try {
-                console.log(id)
                 const response = await fetch(`/api/notes/note/${id}`);
                 const jsonData = await response.json();
                 setNote(jsonData);
