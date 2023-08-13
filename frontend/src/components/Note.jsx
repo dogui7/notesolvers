@@ -1,3 +1,6 @@
+// API services
+import {editNote, deleteNote} from "../api/apiNotesService";
+
 // React router dom
 import {Link} from 'react-router-dom'
 
@@ -19,22 +22,14 @@ export default function Note(props) {
     const handleArchiveButtonClick = async () => {
 
         // PUT request
-        const url = `/api/notes/editNote/${props.data.id}`;
         const data = {
             archived: props.data.archived ? false : true
         };
 
-        await fetch(url, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        });
+        await editNote(data, props.data.id);
 
         // Refresh the window to see changes (Ideally, it should re-render the NotesList or ArchivedList component)
-        window.location.reload()
-        
+        window.location.reload();
     };
 
     // Handle delete button with a confirmation and make DELETE request
@@ -42,15 +37,10 @@ export default function Note(props) {
         // Confirm delete
         if(window.confirm("Are you sure you want to delete this note? It will be lost forever")) {
             // DELETE request
-            const url = `/api/notes/deleteNote/${props.data.id}`;
+            await deleteNote(props.data.id);
 
-            await fetch(url, {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                }
-            });
-            window.location.reload()
+            // Refresh the window to see changes (Ideally, it should re-render the NotesList or ArchivedList component)
+            window.location.reload();
         }
     };
 

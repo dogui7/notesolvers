@@ -1,9 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-/* // Disable react devtools
-import {disableReactDevtools} from "@fvilers/disable-react-devtools"; */
-
 // MUI
 import customTheme from './theme'
 import {ThemeProvider} from '@mui/material/styles';

@@ -1,3 +1,6 @@
+// API services
+import {getNote} from "../api/apiNotesService";
+
 // useEffect and useState hook
 import {useEffect, useState} from 'react'
 
@@ -26,10 +29,8 @@ export default function NotesList() {
     useEffect(() => {
         async function fetchNote() {
             try {
-                const response = await fetch(`/api/notes/note/${id}`);
-                const jsonData = await response.json();
-                setNote(jsonData);
-                console.log(jsonData)
+                const noteData = await getNote(id);
+                setNote(noteData);
                 setLoading(false);
             } catch (error) {
                 console.log(error)

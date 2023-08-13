@@ -1,3 +1,6 @@
+// API services
+import {createNote} from "../api/apiNotesService";
+
 // useState hook
 import {useState} from 'react';
 
@@ -35,21 +38,14 @@ export default function CreateNote() {
     // Handle form submit and make POST request
     const handleFormSubmit = async (event) => {
         // POST request
-        const url = "/api/notes/addNote";
         const data = {
             title: formData.title,
             text: formData.text,
             archived: false,
             category_id: 1,
         };
-
-        await fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        });
+        
+        await createNote(data);
 
         // Go to home
         navigate("/");

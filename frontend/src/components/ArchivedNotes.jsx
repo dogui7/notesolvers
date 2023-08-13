@@ -4,6 +4,9 @@ import {useEffect, useState} from 'react'
 // Loader
 import HashLoader from "react-spinners/HashLoader";
 
+// API services
+import {getArchivedNotes} from "../api/apiNotesService";
+
 // MUI imports
 import Grid from '@mui/material/Grid';
 
@@ -20,9 +23,8 @@ export default function ArchivedNotesList() {
     useEffect(() => {
         async function fetchNotes() {
             try {
-                const response = await fetch("/api/notes/archived");
-                const jsonData = await response.json();
-                setNotes(jsonData);
+                const archivedNotesData = await getArchivedNotes();
+                setNotes(archivedNotesData);
                 setLoading(false);
             } catch (error) {
                 console.log(error)

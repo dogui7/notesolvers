@@ -1,3 +1,6 @@
+// API services
+import {getNote, editNote} from "../api/apiNotesService";
+
 // useEffect and useState hook
 import {useEffect, useState} from 'react'
 
@@ -32,28 +35,24 @@ export default function EditNote() {
 
     // On render, find the note to edit and update the state
     useEffect(() => {
-        setLoading(true);
         async function fetchNote() {
             try {
-                const response = await fetch(`/api/notes/note/${id}`);
-                if (!response.ok) {
-                    throw new Error("Network response was not ok")
-                }
-                const jsonData = await response.json();
-
+                const noteData = await getNote(id);
+                
                 // Update state to show values in form
                 setFormData((prevData) => ({
                     ...prevData,
-                    title: jsonData.title,
-                    text: jsonData.text,
+                    title: noteData.title,
+                    text: noteData.text,
                 }));
-
+                
                 setLoading(false);
             } catch (error) {
                 console.log(error)
             }
         }
         
+        setLoading(true);
         fetchNote();
     }, [])
 
@@ -68,24 +67,14 @@ export default function EditNote() {
 
     // Handle form submit and make PUT request
     const handleFormSubmit = async (event) => {
-        // Prevent real submit from happening
-        event.preventDefault();
-
         // PUT request
-        const url = `/api/notes/editNote/${id}`;
         const data = {
             title: formData.title,
             text: formData.text,
             category_id: 1,
         };
 
-        await fetch(url, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        });
+        await editNote(data, id);
 
         // Go to home
         navigate("/");
