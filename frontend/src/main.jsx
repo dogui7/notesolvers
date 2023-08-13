@@ -14,6 +14,7 @@ import CreateNote from "./components/CreateNote.jsx";
 import EditNote from "./components/EditNote.jsx";
 import SingleNote from "./components/SingleNote.jsx";
 import ArchivedNotes from "./components/ArchivedNotes.jsx";
+import Error404 from "./components/Error404";
 
 // CSS
 import "./assets/Main.css";
@@ -40,7 +41,10 @@ const router = createBrowserRouter([
         path: "/edit/:id",
         element: <EditNote/>,
     },
-    
+    {
+        path: "*",
+        element: <Error404/>,
+    },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
