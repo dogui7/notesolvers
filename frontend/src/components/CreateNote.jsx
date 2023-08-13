@@ -9,14 +9,10 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 // My components
 import Header from "./Header";
-
-// CSS
-import "../assets/CreateNote.css";
 
 export default function CreateNote() {
 
@@ -71,21 +67,17 @@ export default function CreateNote() {
                 <Card>
                     <CardContent>
                         {/* Title */}
-                        <div id="title-input">
-                            <TextField fullWidth multiline size="small" label="Title" variant="outlined"
-                                type="text"
-                                name="title"
-                                onChange={handleInputChange}
-                            />
-                        </div>
+                        <TextField margin="normal" fullWidth multiline size="small" label="Title" variant="outlined"
+                            type="text"
+                            name="title"
+                            onChange={handleInputChange}
+                        />
                         {/* Text */}
-                        <div id="text-input">
-                            <TextField className="input" fullWidth multiline size="small" label="Text" variant="outlined" 
-                                type="text"
-                                name="text"
-                                onChange={handleInputChange}
-                            />
-                        </div>
+                        <TextField margin="normal" fullWidth multiline size="small" label="Text" variant="outlined" 
+                            type="text"
+                            name="text"
+                            onChange={handleInputChange}
+                        />
                         <Button variant="contained" onClick={handleFormSubmit}>Create</Button>
                     </CardContent>
                 </Card>

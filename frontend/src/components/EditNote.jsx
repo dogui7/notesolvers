@@ -8,9 +8,11 @@ import {useNavigate, useParams} from "react-router-dom";
 import HashLoader from "react-spinners/HashLoader";
 
 // MUI
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
 
 // My components
 import Header from "./Header";
@@ -99,32 +101,29 @@ export default function EditNote() {
         {loading ? (
             <HashLoader color="#36d7b7" speedMultiplier={2.5}/>
         ) : (
-            <form onSubmit={handleFormSubmit}>
-                <List component="nav" aria-label="mailbox folders">
-                    <ListItem >
-                        <label>Title:</label>
-                        <input
-                            type="text"
-                            name="title"
-                            value={formData.title}
-                            onChange={handleInputChange}
-                        />
-                    </ListItem>
-                    <Divider />
-                    <ListItem divider>
-                        <label>Text:</label>
-                        <input
-                            type="text"
-                            name="text"
-                            value={formData.text}
-                            onChange={handleInputChange}
-                        />
-                    </ListItem>
-                </List>
-                <button type="submit">
-                    Edit
-                </button>
-            </form>
+            <Grid container spacing={2}>
+                <Grid item xs={3}>                                         
+                    <Card>
+                        <CardContent>
+                            {/* Title */}
+                            <TextField margin="normal" fullWidth multiline size="small" label="Title" variant="outlined"
+                                type="text"
+                                name="title"
+                                value={formData.title}
+                                onChange={handleInputChange}
+                            />
+                            {/* Text */}
+                            <TextField margin="normal" fullWidth multiline size="small" label="Text" variant="outlined" 
+                                type="text"
+                                name="text"
+                                value={formData.text}
+                                onChange={handleInputChange}
+                            />
+                            <Button variant="contained" onClick={handleFormSubmit}>Edit</Button>
+                        </CardContent>
+                    </Card>
+                </Grid>
+            </Grid>
         )}
         </>
     );
