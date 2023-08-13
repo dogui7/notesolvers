@@ -14,9 +14,6 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 
-// My components
-import Header from "./Header";
-
 export default function EditNote() {
 
     // State
@@ -96,7 +93,6 @@ export default function EditNote() {
 
     return (
         <>
-        <Header/>
         <h2>Edit note</h2>
         {loading ? (
             <HashLoader color="#36d7b7" speedMultiplier={2.5}/>

@@ -11,9 +11,6 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 
-// My components
-import Header from "./Header";
-
 export default function CreateNote() {
 
     // State
@@ -60,7 +57,6 @@ export default function CreateNote() {
 
     return (
         <>
-        <Header/>
         <h2>Create new note</h2>
         <Grid container spacing={2}>
             <Grid item xs={3}>                                         

@@ -11,7 +11,6 @@ import {useParams} from "react-router-dom";
 import Grid from '@mui/material/Grid';
 
 // My components
-import Header from "./Header";
 import Note from "./Note";
 
 export default function NotesList() {
@@ -44,7 +43,6 @@ export default function NotesList() {
 
     return (
         <>
-        <Header/>
         {loading ? (
             <HashLoader color="#36d7b7" speedMultiplier={2.5}/>
         ) : (

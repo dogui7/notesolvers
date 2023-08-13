@@ -35,7 +35,6 @@ export default function NotesList() {
 
     return (
         <>
-        
         {loading ? (
             <HashLoader color="#36d7b7" speedMultiplier={2.5}/>
         ) : (

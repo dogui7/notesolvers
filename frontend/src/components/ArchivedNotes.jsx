@@ -9,7 +9,6 @@ import Grid from '@mui/material/Grid';
 
 // My components
 import Note from "./Note";
-import Header from "./Header";
 
 export default function ArchivedNotesList() {
 
@@ -36,7 +35,6 @@ export default function ArchivedNotesList() {
 
     return (
         <>
-        <Header/>
         {loading ? (
             <HashLoader color="#36d7b7" speedMultiplier={2.5}/>
         ) : (
