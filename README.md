@@ -28,6 +28,11 @@ To setup and run the project:
   npm start
 ```
 
+## FRONT DEPLOY (fetchs not working, wip): 
+https://notesolvers.onrender.com/
+
+## BACK DEPLOY: 
+https://notesolvers-api.onrender.com/
 ## ERD
 
 Due to time constraints, I wasn't able to fully implement the categories dynamic in the application, but the table was made for a future implementation. 
