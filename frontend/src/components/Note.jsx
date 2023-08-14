@@ -15,15 +15,16 @@ import EditIcon from '@mui/icons-material/Edit';
 import ArchiveIcon from '@mui/icons-material/Archive';
 import UnarchiveIcon from '@mui/icons-material/Unarchive';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Tooltip from '@mui/material/Tooltip';
 
 export default function Note(props) {
 
-    // If archived, it retrieves it, and vice versa via a PUT request
+    // Archive the note, via a PUT request
     const handleArchiveButtonClick = async () => {
 
         // PUT request
         const data = {
-            archived: props.data.archived ? false : true
+            archived: true
         };
 
         await editNote(data, props.data.id);
@@ -31,6 +32,22 @@ export default function Note(props) {
         // Refresh the window to see changes (Ideally, it should re-render the NotesList or ArchivedList component)
         window.location.reload();
     };
+
+    // Retrieve the note, via a PUT request
+    const handleRetrieveButtonClick = async () => {
+
+        // PUT request
+        const data = {
+            archived: false
+        };
+
+        await editNote(data, props.data.id);
+
+        // Refresh the window to see changes (Ideally, it should re-render the NotesList or ArchivedList component)
+        window.location.reload();
+    };
+
+
 
     // Handle delete button with a confirmation and make DELETE request
     const handleDeleteButtonClick = async () => {
@@ -45,7 +62,7 @@ export default function Note(props) {
     };
 
     return (
-        <Grid item xs={3}>                                         
+        <Grid item xs={6} sm={4} lg={3}>                                         
             <Card>
                 {/* Title */}
                     <Link to={`/note/${props.data.id}`}>
@@ -59,26 +76,34 @@ export default function Note(props) {
                     {/* Edit icon */}
                     {!props.data.archived && 
                         <Link to={`/edit/${props.data.id}`}>
-                            <IconButton>
-                                <EditIcon color="primary"/>
-                            </IconButton>
+                            <Tooltip title="Edit" arrow enterDelay={200} leaveDelay={100}>
+                                <IconButton>
+                                    <EditIcon color="primary"/>
+                                </IconButton>
+                            </Tooltip>
                         </Link>
                     }
                     {/* Archive || retrieve button */}
                     {props.data.archived 
                     ?   
-                        <IconButton onClick={handleArchiveButtonClick}>
-                            <UnarchiveIcon color="primary"/>
-                        </IconButton>
+                        <Tooltip title="Retrieve" arrow enterDelay={200} leaveDelay={100}>
+                            <IconButton onClick={handleRetrieveButtonClick}>
+                                <UnarchiveIcon color="primary"/>
+                            </IconButton>
+                        </Tooltip>
                     :
-                        <IconButton onClick={handleArchiveButtonClick}>
-                            <ArchiveIcon color="primary"/>
-                        </IconButton>
+                        <Tooltip title="Archive" arrow enterDelay={200} leaveDelay={100}>
+                            <IconButton onClick={handleArchiveButtonClick}>
+                                <ArchiveIcon color="primary"/>
+                            </IconButton>
+                        </Tooltip>
                     }
                     {/* Delete button */}
-                    <IconButton onClick={handleDeleteButtonClick}>
-                        <DeleteIcon color="error"/>
-                    </IconButton>
+                    <Tooltip title="Delete" arrow enterDelay={200} leaveDelay={100}>
+                        <IconButton onClick={handleDeleteButtonClick}>
+                            <DeleteIcon color="error"/>
+                        </IconButton>
+                    </Tooltip>
                 </CardContent>
             </Card>
         </Grid>
