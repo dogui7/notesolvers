@@ -22,6 +22,7 @@ export default function CreateNote() {
         text: "",
         category_id: 0,
     });
+    const [error, setError] = useState({error: false, status: ""});
     
     // Using navigate to go to home after editing
     const navigate = useNavigate()
@@ -44,37 +45,43 @@ export default function CreateNote() {
             archived: false,
             category_id: 1,
         };
-        
-        await createNote(data);
-
-        // Go to home
-        navigate("/");
+        try {
+            await createNote(data);
+            // Go to home
+            navigate("/");
+        } catch (e) {
+            setError({error: e.message, status: e.status});
+        }
     };
 
     return (
         <>
         <h2>Create new note</h2>
-        <Grid container spacing={2}>
-            <Grid item xs={3}>                                         
-                <Card>
-                    <CardContent>
-                        {/* Title */}
-                        <TextField margin="normal" fullWidth multiline size="small" label="Title" variant="outlined"
-                            type="text"
-                            name="title"
-                            onChange={handleInputChange}
-                        />
-                        {/* Text */}
-                        <TextField margin="normal" fullWidth multiline size="small" label="Text" variant="outlined" 
-                            type="text"
-                            name="text"
-                            onChange={handleInputChange}
-                        />
-                        <Button variant="contained" onClick={handleFormSubmit}>Create</Button>
-                    </CardContent>
-                </Card>
+        {error.error ? (
+            <h2>Error fetching data: {error.error + error.status}</h2>
+        ) : (
+            <Grid container spacing={2}>
+                <Grid item xs={3}>                                         
+                    <Card>
+                        <CardContent>
+                            {/* Title */}
+                            <TextField margin="normal" fullWidth multiline size="small" label="Title" variant="outlined"
+                                type="text"
+                                name="title"
+                                onChange={handleInputChange}
+                            />
+                            {/* Text */}
+                            <TextField margin="normal" fullWidth multiline size="small" label="Text" variant="outlined" 
+                                type="text"
+                                name="text"
+                                onChange={handleInputChange}
+                            />
+                            <Button variant="contained" onClick={handleFormSubmit}>Create</Button>
+                        </CardContent>
+                    </Card>
+                </Grid>
             </Grid>
-        </Grid>
+        )}
         </>
     );
 }

@@ -76,10 +76,13 @@ export default function EditNote() {
             category_id: 1,
         };
 
-        await editNote(data, id);
-
-        // Go to home
-        navigate("/");
+        try {
+            await editNote(data, id);
+            // Go to home
+            navigate("/");
+        } catch (e) {
+            setError({error: e.message, status: e.status});
+        }
     };
 
     return (
