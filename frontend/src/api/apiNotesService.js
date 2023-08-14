@@ -1,4 +1,4 @@
-const apiDomain = import.meta.env.VITE_API_DOMAIN;
+const apiDomain = import.meta.env.VITE_API_DOMAIN || "https://notesolvers-api.onrender.com";
 
 // GET - get all notes
 export const getNotes = async () => {
